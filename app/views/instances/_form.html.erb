@@ -1,4 +1,6 @@
-<%= form_for(@instance) do |f| %>
+<%#= form_for(@instance) do |f| %>
+  <%= simple_form_for(@instance, :html => {:class => 'form-horizontal' }) do |form| %>
+
   <% if @instance.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@instance.errors.count, "error") %> prohibited this instance from being saved:</h2>
@@ -11,19 +13,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :course %><br />
-    <%= f.text_field :course %>
+  <%= form.input :course, label: 'Course Number', placeholder: 'Course this will be used in' %>
+  <%= form.input :instructor, label: 'Instructor', placeholder: 'Instructor of record' %>
+  <h3>Terms</h3>
+  <p>Lorem ipsum...</p>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= form.input :terms, label: "Yes, I agree" %>
+      <%= form.submit %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :instructor %><br />
-    <%= f.text_field :instructor %>
-  </div>
-  <div class="field">
-    <%= f.label :terms %><br />
-    <%= f.check_box :terms %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
 <% end %>

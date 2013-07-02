@@ -1,3 +1,6 @@
+<%= link_to 'Edit', edit_instance_path(@instance) %> |
+<%= link_to 'Back', instances_path %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -13,8 +16,97 @@
 <p>
   <b>Terms:</b>
   <%= @instance.terms %>
-</p>
+  </p>
 
 
-<%= link_to 'Edit', edit_instance_path(@instance) %> |
-<%= link_to 'Back', instances_path %>
+  <hr/>
+
+  <div id="apache">
+    <h1>Apache Config</h1>
+
+    <h2>Staging</h2>
+    <pre>
+  &lt;VirtualHost *:80>
+     DocumentRoot /usr/local/projects/<%= @instance.course.downcase %>/current
+
+     ServerName  staging.<%= @instance.course.downcase %>.lib.virginia.edu
+     ServerAlias staging.<%= @instance.course.downcase %>.lib.virginia.edu
+
+     ErrorLog  logs/<%= @instance.course.downcase %>.omeka-error_log
+     CustomLog logs/<%= @instance.course.downcase %>.omeka-access_log common
+
+     &lt;Directory "/usr/local/projects/<%= @instance.course.downcase %>/current">
+        Options FollowSymlinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+     &lt;/Directory>
+
+  &lt;/VirtualHost>
+    </pre>
+
+      <h2>Production</h2>
+    <pre>
+  &lt;VirtualHost *:80>
+     DocumentRoot /usr/local/projects/<%= @instance.course.downcase %>/current
+
+     ServerName  <%= @instance.course.downcase %>.lib.virginia.edu
+     ServerAlias <%= @instance.course.downcase %>.lib.virginia.edu
+
+     ErrorLog  logs/<%= @instance.course.downcase %>.omeka-error_log
+     CustomLog logs/<%= @instance.course.downcase %>.omeka-access_log common
+
+     &lt;Directory "/usr/local/projects/<%= @instance.course.downcase %>/current">
+        Options FollowSymlinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+     &lt;/Directory>
+
+  &lt;/VirtualHost>
+    </pre>
+  </div>
+
+  <div id="capistrano">
+    <h1>Capistrano</h1>
+
+    <pre>
+load 'recipes/cleanup.rb'
+
+set :project_roles, %w(app db web)
+
+set :application, "<%= @instance.course.downcase %>"
+
+load 'recipes/omeka_defaults.rb'
+    </pre>
+  </div>
+
+  <div id="omeka_db">
+    <h1>Database config</h1>
+    <h2>Staging</h2>
+  <pre>
+[database]
+host     = "sds2.itc.virginia.edu"
+username = "omeka_user"
+password = "123456"
+name     = "omeka_staging"
+prefix   = "<%= @instance.course.downcase %>_"
+;port     = ""
+  </pre>
+<h2>Production</h2>
+
+    <pre>
+[database]
+host     = "sds2.itc.virginia.edu"
+username = "omeka_user"
+password = "123456"
+name     = "omeka_production"
+prefix   = "<%= @instance.course.downcase %>_"
+;port     = ""
+  </pre>
+
+  </div>
+
+
+
+

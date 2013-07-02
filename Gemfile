@@ -22,9 +22,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'will_paginate'
 gem 'simple_form'
-
+gem 'thin'
 
 group :development do
   gem 'rack-livereload'
@@ -32,8 +32,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
-  gem 'factory_girl'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'faker'
 end
 

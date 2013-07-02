@@ -1,21 +1,19 @@
 <h1>Listing instances</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Course</th>
     <th>Instructor</th>
     <th>Terms</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @instances.each do |instance| %>
   <tr>
-    <td><%= instance.course %></td>
+    <td><%= link_to instance.course, instance %></td>
     <td><%= instance.instructor %></td>
     <td><%= instance.terms %></td>
-    <td><%= link_to 'Show', instance %></td>
     <td><%= link_to 'Edit', edit_instance_path(instance) %></td>
     <td><%= link_to 'Destroy', instance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
