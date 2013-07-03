@@ -1,35 +1,18 @@
 class InstancesController < ApplicationController
+
   # GET /instances
-  # GET /instances.json
   def index
-    #@instances = Instance.all
     @instances = Instance.paginate(:page => params[:page])
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @instances }
-    end
   end
 
   # GET /instances/1
-  # GET /instances/1.json
   def show
     @instance = Instance.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @instance }
-    end
   end
 
   # GET /instances/new
-  # GET /instances/new.json
   def new
     @instance = Instance.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @instance }
-    end
   end
 
   # GET /instances/1/edit
@@ -44,13 +27,19 @@ class InstancesController < ApplicationController
 
     respond_to do |format|
       if @instance.save
-        format.html { redirect_to @instance, notice: 'Instance was successfully created.' }
+        #format.html { redirect_to @instance, notice: 'Request was made.' }
+        format.html { redirect_to instances_thanks_path, notice: 'Request was made.' }
         format.json { render json: @instance, status: :created, location: @instance }
       else
         format.html { render action: "new" }
         format.json { render json: @instance.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+ # GET /instances/new
+  def thanks
+    
   end
 
   # PUT /instances/1

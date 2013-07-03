@@ -1,6 +1,7 @@
 QuanduOmeka::Application.routes.draw do
+ 
+  get 'instances/thanks'
   resources :instances
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -51,7 +52,7 @@ QuanduOmeka::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'instances#index'
+  root :to => 'instances#new'
 
   # See how all your routes lay out with "rake routes"
 
