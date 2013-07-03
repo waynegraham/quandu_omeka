@@ -24,13 +24,33 @@
 </nav>
 </header>
 <div role="main" class="container">
-  <div class="row">
-    <div class="span12">
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-    </div>
+<div class="row">
+  <div class="span12">
+    <%= render 'layouts/messages' %>
+    <%= yield %>
   </div>
-<footer>
+</div>
+<hr/>
+<footer class="row">
+  <div class="vcard span6" id="slab-vcard">
+    <address>
+      <%= link_to("Scholars’ Lab", 'http://scholarslab.org')%><br/>
+      <%= link_to('University of Virginia Library', 'http://library.virginia.edu')%><br/>
+      P.O. Box 400129<br/>
+      Charlottesville, VA 22904-4129<br/>
+      <abbr title="Phone">T:</abbr> 434.243.8800<br/>
+      <abbr title="fax">F:</abbr> 434.924.1431
+    </address>
+  </div>
+
+  <div id="social-media" class="span6 omega">
+    <p><strong>Find Scholars’ Lab Elsewhere</strong></p>
+    <a href="http://twitter.com/scholarslab"><img src="http://www.scholarslab.org/wp-content/themes/labnotes/images/xtwitter.png.pagespeed.ic.SShtyeRWcL.png"></a>
+    <a href="https://www.facebook.com/scholarslab"><img src="http://www.scholarslab.org/wp-content/themes/labnotes/images/xfacebook.png.pagespeed.ic.-Mn9k5pNqG.png"></a>
+    <a href="https://plus.google.com/114472010795641313811"><img src="http://www.scholarslab.org/wp-content/themes/labnotes/images/xgoogleplus.png.pagespeed.ic.e_aeZtD88c.png"></a>
+    <a href="https://vimeo.com/scholarslab"><img src="http://www.scholarslab.org/wp-content/themes/labnotes/images/xvimeo.png.pagespeed.ic.S9LZcs5YOj.png"></a>
+    <a href="http://github.com/scholarslab/"><img src="http://www.scholarslab.org/wp-content/themes/labnotes/images/xgithub.png.pagespeed.ic.avX8Ahk6_q.png"></a>
+  </div>
 </footer>
 </div> <!--! end of #main -->
 </body>

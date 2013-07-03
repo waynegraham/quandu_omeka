@@ -6,12 +6,32 @@
 body { padding: 60px; }
 @import "bootstrap-responsive";
 
-.content {
-  background-color: #eee;
-  padding: 20px;
-  margin: 0 -20px;
-  @include border-radius(0 0 6px 6px);
-  @include box-shadow(0 1px 2px rgba(0,0,0,.15));
 
+footer {
+  color: $gray;
+
+  p {
+    color: $grayLight;
+  }
+
+  #social-media {
+    display: inline;
+    text-align: right;
+    color: $gray;
+
+    a { color: $gray }
+
+    a:link, a:visited {
+      img { opacity: 0.5 }
+    }
+    a:hover, a:focus {
+      img { opacity: 0.7 }
+    }
+    a:active {
+      img { opacity: 0.9 }
+    }
+  }
 }
+
+
 
