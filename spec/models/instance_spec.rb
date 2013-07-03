@@ -1,23 +1,22 @@
 require 'spec_helper'
+require 'faker'
 
 describe Instance do
 
 
   before(:each) do
     @attr = {
-      :course => 'Introduction to foo',
-      :instructor => 'Kent Beck',
+      :course  => Faker::Lorem.word,
+      :instructor => "#{Faker::Name.first_name} #{Faker::Name.last_name}",
       :terms => true
     }
-  end
 
-  it "should have a valid factory" do
-    expect(build(:instance)).to be_valid
+    #@attr = FactoryGirl.attributes_for(:instance)
   end
 
   it { should validate_presence_of :course }
-  it { should validate_presence_of :terms }
-
+  it { should validate_acceptance_of :terms }
+  it { should validate_uniqueness_of :course }
 
   it "should create a new instance given a valid attribute" do
     Instance.new(@attr)
@@ -36,7 +35,7 @@ describe Instance do
 
   it "is invalid without an instructor" do
     no_instructor = Instance.new(@attr.merge(:instructor => ''))
-    no_instructor.should_not be_valid
+    no_instructor.should raise_error
   end
 
   it "is invalid without accepting the terms" do

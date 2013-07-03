@@ -8,6 +8,7 @@ class Instance < ActiveRecord::Base
   #validates :instructor, :presence => true, :length => { :maximum => 50 }
   validates :terms, :acceptance => {:accept => true }
 
+  validates_uniqueness_of :course
 
   attr_accessible :course, :instructor, :terms
 

@@ -5,7 +5,7 @@ describe "instances/show" do
     @instance = assign(:instance, stub_model(Instance,
       :course => "Course",
       :instructor => "Instructor",
-      :terms => false
+      :terms => true
     ))
   end
 
@@ -14,6 +14,5 @@ describe "instances/show" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Course/)
     rendered.should match(/Instructor/)
-    rendered.should match(/false/)
   end
 end
