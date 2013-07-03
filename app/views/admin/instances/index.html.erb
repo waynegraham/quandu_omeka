@@ -1,0 +1,24 @@
+<h1>Neatline Instances <%= link_to 'New Instance', new_admin_instance_path, :class => 'btn btn-primary' %></h1>
+
+<p></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Course</th>
+    <th>Instructor</th>
+    <th>Terms</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @instances.each do |instance| %>
+  <tr>
+    <td><%= link_to instance.course, admin_instance_path(instance) %></td>
+    <td><%= instance.instructor %></td>
+    <td><% if instance.terms %><i class="icon-ok"></i><% end %></td>
+    <td><%= link_to 'Edit', edit_admin_instance_path(instance), :class => 'btn btn-info' %></td>
+    <td><%= link_to 'Delete', [:admin, instance], :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+

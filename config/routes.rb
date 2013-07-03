@@ -1,7 +1,12 @@
 QuanduOmeka::Application.routes.draw do
- 
+
   get 'instances/thanks'
-  resources :instances
+
+  #resources :instances, only: [:new, :create]
+
+  namespace :admin do
+    resources :instances
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

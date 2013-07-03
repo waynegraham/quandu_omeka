@@ -1,0 +1,119 @@
+<ul class="breadcrumb">
+  <li><%= link_to 'Neatline Instances', admin_instances_path %> <span class="divider">/</span></li>
+  <li class="active"><%= @instance.course.titleize %></li>
+</ul>
+
+<div class="hero-unit">
+
+  <div class="page-header">
+    <h1>Course <small><%= @instance.course %></small></h1>
+  </div>
+
+  <p>
+  <strong>Instructor:</strong>
+  <%= @instance.instructor %>
+  </p>
+  <%= link_to 'Edit', edit_admin_instance_path(@instance), :class => 'btn btn-primary btn-large' %> 
+
+</div>
+
+
+<div id="apache" class="row">
+  <h1>Apache Config</h1>
+
+  <div class="span6">
+    <h2>Staging</h2>
+    <pre>
+  &lt;VirtualHost *:80>
+     DocumentRoot /usr/local/projects/<%= @instance.course.downcase %>/current
+
+     ServerName  staging.<%= @instance.course.downcase %>.lib.virginia.edu
+     ServerAlias staging.<%= @instance.course.downcase %>.lib.virginia.edu
+
+     ErrorLog  logs/<%= @instance.course.downcase %>.omeka-error_log
+     CustomLog logs/<%= @instance.course.downcase %>.omeka-access_log common
+
+     &lt;Directory "/usr/local/projects/<%= @instance.course.downcase %>/current">
+        Options FollowSymlinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+     &lt;/Directory>
+
+  &lt;/VirtualHost>
+    </pre>
+  </div>
+
+  <div class="span6">
+    <h2>Production</h2>
+    <pre>
+  &lt;VirtualHost *:80>
+     DocumentRoot /usr/local/projects/<%= @instance.course.downcase %>/current
+
+     ServerName  <%= @instance.course.downcase %>.lib.virginia.edu
+     ServerAlias <%= @instance.course.downcase %>.lib.virginia.edu
+
+     ErrorLog  logs/<%= @instance.course.downcase %>.omeka-error_log
+     CustomLog logs/<%= @instance.course.downcase %>.omeka-access_log common
+
+     &lt;Directory "/usr/local/projects/<%= @instance.course.downcase %>/current">
+        Options FollowSymlinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+     &lt;/Directory>
+
+  &lt;/VirtualHost>
+    </pre>
+  </div>
+</div>
+
+<div id="capistrano" class="row">
+  <h1>Capistrano</h1>
+
+  <div class="span12">
+    <pre>
+load 'recipes/cleanup.rb'
+
+set :project_roles, %w(app db web)
+
+set :application, "<%= @instance.course.downcase %>"
+
+load 'recipes/omeka_defaults.rb'
+    </pre>
+  </div>
+</div>
+
+<div id="omeka_db" class="row">
+  <h1>Database config</h1>
+  <div class="span6">
+
+    <h2>Staging</h2>
+    <pre>
+[database]
+host     = "sds2.itc.virginia.edu"
+username = "omeka_user"
+password = "123456"
+name     = "omeka_staging"
+prefix   = "<%= @instance.course.downcase %>_"
+;port     = ""
+    </pre>
+  </div>
+  <div class="span6">
+    <h2>Production</h2>
+
+    <pre>
+[database]
+host     = "sds2.itc.virginia.edu"
+username = "omeka_user"
+password = "123456"
+name     = "omeka_production"
+prefix   = "<%= @instance.course.downcase %>_"
+;port     = ""
+    </pre>
+  </div>
+</div>
+
+
+
+
