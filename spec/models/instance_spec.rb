@@ -11,6 +11,14 @@ describe Instance do
     }
   end
 
+  it "should have a valid factory" do
+    expect(build(:instance)).to be_valid
+  end
+
+  it { should validate_presence_of :course }
+  it { should validate_presence_of :terms }
+
+
   it "should create a new instance given a valid attribute" do
     Instance.new(@attr)
   end

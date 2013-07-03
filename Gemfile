@@ -29,16 +29,22 @@ gem 'thin'
 group :development do
   gem 'rack-livereload'
   gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'rb-fsevent'
 end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'faker'
 end
 
 group :test do
   gem 'simplecov', :require => false
+  gem 'faker'
+  gem "capybara"
+  gem "database_cleaner"
+  gem "shoulda-matchers"
 end
 
 

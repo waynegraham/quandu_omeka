@@ -1,17 +1,18 @@
-<%#= form_for(@instance) do |f| %>
   <%= simple_form_for(@instance, :html => {:class => 'form-horizontal' }) do |form| %>
+    <% if @instance.errors.any? %>
 
-  <% if @instance.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@instance.errors.count, "error") %> prohibited this instance from being saved:</h2>
+      <%= display_base_errors @instance %>
 
-      <ul>
-      <% @instance.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="alert alert-error alert-block">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p><strong>Oh snap!</strong> looks like something is wrong:</p>
+        <ul>
+        <% @instance.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+       </ul>
+      </div>
+    <% end %>
 
   <%= form.input :course, label: 'Course Number', placeholder: 'Course this will be used in' %>
   <%= form.input :instructor, label: 'Instructor', placeholder: 'Instructor of record' %>
