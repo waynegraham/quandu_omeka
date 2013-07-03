@@ -1,29 +1,30 @@
-<%= link_to 'Edit', edit_instance_path(@instance) %> |
-<%= link_to 'Back', instances_path %>
+<ul class="breadcrumb">
+  <li><%= link_to 'Back', instances_path %> <span class="divider">/</span></li>
+  <li class="active"><%= @instance.course.titleize %></li>
+</ul>
 
 <p id="notice"><%= notice %></p>
 
+<div class="hero-unit">
+ 
+  <div class="page-header">
+  <h1>Course <small><%= @instance.course %></small></h1>
+</div>
+  
 <p>
-  <b>Course:</b>
-  <%= @instance.course %>
-</p>
-
-<p>
-  <b>Instructor:</b>
+  <strong>Instructor:</strong>
   <%= @instance.instructor %>
-</p>
-
-<p>
-  <b>Terms:</b>
-  <%= @instance.terms %>
   </p>
+<%= link_to 'Edit', edit_instance_path(@instance), :class => 'btn btn-primary btn-large' %> 
+
+ 
+</div>
 
 
-  <hr/>
-
-  <div id="apache">
+  <div id="apache" class="row">
     <h1>Apache Config</h1>
 
+    <div class="span6">
     <h2>Staging</h2>
     <pre>
   &lt;VirtualHost *:80>
@@ -44,7 +45,9 @@
 
   &lt;/VirtualHost>
     </pre>
+  </div>
 
+      <div class="span6">
       <h2>Production</h2>
     <pre>
   &lt;VirtualHost *:80>
@@ -66,10 +69,12 @@
   &lt;/VirtualHost>
     </pre>
   </div>
+  </div>
 
-  <div id="capistrano">
-    <h1>Capistrano</h1>
+  <div id="capistrano" class="row">
+     <h1>Capistrano</h1>
 
+    <div class="span12">
     <pre>
 load 'recipes/cleanup.rb'
 
@@ -80,9 +85,12 @@ set :application, "<%= @instance.course.downcase %>"
 load 'recipes/omeka_defaults.rb'
     </pre>
   </div>
+  </div>
 
-  <div id="omeka_db">
+  <div id="omeka_db" class="row">
     <h1>Database config</h1>
+    <div class="span6">
+
     <h2>Staging</h2>
   <pre>
 [database]
@@ -93,6 +101,8 @@ name     = "omeka_staging"
 prefix   = "<%= @instance.course.downcase %>_"
 ;port     = ""
   </pre>
+</div>
+<div class="span6">
 <h2>Production</h2>
 
     <pre>
@@ -104,7 +114,7 @@ name     = "omeka_production"
 prefix   = "<%= @instance.course.downcase %>_"
 ;port     = ""
   </pre>
-
+</div>
   </div>
 
 

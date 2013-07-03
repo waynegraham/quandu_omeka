@@ -1,4 +1,6 @@
-<h1>Listing instances</h1>
+<h1>Listing instances <%= link_to 'New Instance', new_instance_path, :class => 'btn btn-primary' %></h1>
+
+<p></p>
 
 <table class="table table-striped">
   <tr>
@@ -13,13 +15,10 @@
   <tr>
     <td><%= link_to instance.course, instance %></td>
     <td><%= instance.instructor %></td>
-    <td><%= instance.terms %></td>
-    <td><%= link_to 'Edit', edit_instance_path(instance) %></td>
-    <td><%= link_to 'Destroy', instance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><% if instance.terms %><i class="icon-ok"></i><% end %></td>
+    <td><%= link_to 'Edit', edit_instance_path(instance), :class => 'btn btn-info' %></td>
+    <td><%= link_to 'Delete', instance, :class => 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Instance', new_instance_path %>

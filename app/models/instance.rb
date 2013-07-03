@@ -6,7 +6,7 @@ class Instance < ActiveRecord::Base
 
   validates :course, :presence => true, :length => { :maximum => 50 }
   #validates :instructor, :presence => true, :length => { :maximum => 50 }
-  validates :terms, :acceptance => true
+  validates :terms, :acceptance => {:accept => true }
 
 
   attr_accessible :course, :instructor, :terms
