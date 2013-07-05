@@ -28,7 +28,7 @@ class Admin::InstancesController < ApplicationController
     respond_to do |format|
       if @instance.save
         #format.html { redirect_to @instance, notice: 'Request was made.' }
-        format.html { redirect_to instances_admin_path, notice: 'Request was made.' }
+        format.html { redirect_to admin_instances_path, notice: 'Request was made.' }
       else
         format.html { render action: "new" }
       end
