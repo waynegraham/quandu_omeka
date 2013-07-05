@@ -77,7 +77,7 @@ describe Admin::InstancesController do
 
       it "redirects to the instance list" do
         post :create, {:instance => valid_attributes}, valid_session
-        response.should redirect_to([:admin, instance])
+        response.should redirect_to(admin_instances_path)
       end
     end
 

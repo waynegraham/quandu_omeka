@@ -51,9 +51,9 @@ describe InstancesController do
         assigns(:instance).should be_persisted
       end
 
-      it "redirects to the created instance" do
+      it "redirects to the thanks_path" do
         post :create, {:instance => valid_attributes}, valid_session
-        response.should redirect_to(Instance.last)
+        response.should redirect_to(instances_thanks_path)
       end
     end
 

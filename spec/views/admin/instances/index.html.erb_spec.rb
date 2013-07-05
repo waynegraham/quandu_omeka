@@ -1,7 +1,10 @@
 require 'spec_helper'
 
-describe "instances/index" do
+describe "/admin/instances/index" do
   before(:each) do
+
+    view.stub(:will_paginate)
+
     assign(:instances, [
       stub_model(Instance,
         :course => "Course",
@@ -14,6 +17,7 @@ describe "instances/index" do
         :terms => false
       )
     ])
+
   end
 
   it "renders a list of instances" do
