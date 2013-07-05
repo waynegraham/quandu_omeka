@@ -1,5 +1,21 @@
 module InstancesHelper
 
+  def capistrano_config
+     <<-CAPCONFIG
+    <pre>
+load 'recipes/cleanup.rb'
+
+set :project_roles, %w(app db web)
+
+set :application, "#{ @instance.course.downcase }"
+
+load 'recipes/omeka_defaults.rb'
+    </pre>
+
+    CAPCONFIG
+
+  end
+
   def apache_config(stage)
     html = <<-HTTPDCONFIG
       <pre>

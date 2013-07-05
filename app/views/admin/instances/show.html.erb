@@ -16,7 +16,6 @@
   <%= link_to 'Edit', edit_admin_instance_path(@instance), :class => 'btn btn-primary btn-large' %> 
 </div>
 
-
 <div id="apache" class="row">
   <h1>Apache Config</h1>
   <div class="span6">
@@ -32,15 +31,7 @@
 <div id="capistrano" class="row">
   <h1>Capistrano</h1>
   <div class="span12">
-    <pre>
-load 'recipes/cleanup.rb'
-
-set :project_roles, %w(app db web)
-
-set :application, "<%= @instance.course.downcase %>"
-
-load 'recipes/omeka_defaults.rb'
-    </pre>
+    <%= capistrano_config.html_safe %>
   </div>
 </div>
 
