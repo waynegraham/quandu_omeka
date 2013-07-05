@@ -7,7 +7,7 @@ load 'recipes/cleanup.rb'
 
 set :project_roles, %w(app db web)
 
-set :application, "#{ @instance.course.downcase }"
+set :application, "#{ @instance.course.slugify }"
 
 load 'recipes/omeka_defaults.rb'
     </pre>
@@ -20,15 +20,15 @@ load 'recipes/omeka_defaults.rb'
     html = <<-HTTPDCONFIG
       <pre>
 &lt;VirtualHost *:80>
-    DocumentRoot /usr/local/projects/#{ @instance.course.downcase }/current
+    DocumentRoot /usr/local/projects/#{ @instance.course.slugify }/current
 
-    ServerName #{stage}.#{ @instance.course.downcase }.#{ENV['domain'] || 'localhost' }
-    ServerAlias #{stage}.#{ @instance.course.downcase }.#{ENV['domain'] || 'localhost' }
+    ServerName #{stage}.#{ @instance.course.slugify }.#{ENV['domain'] || 'localhost' }
+    ServerAlias #{stage}.#{ @instance.course.slugify }.#{ENV['domain'] || 'localhost' }
 
-    ErrorLog logs/#{ @instance.course.downcase }.omeka-error_log
-    CustomLog logs/#{ @instance.course.downcase }.omeka-access_log common
+    ErrorLog logs/#{ @instance.course.slugify }.omeka-error_log
+    CustomLog logs/#{ @instance.course.slugify }.omeka-access_log common
 
-    &lt;Directory "/usr/local/projects/#{ @instance.course.downcase }/current">
+    &lt;Directory "/usr/local/projects/#{ @instance.course.slugify }/current">
       Options FollowSymlinks
       AllowOverride All
       Order allow,deny
@@ -51,7 +51,7 @@ host     = "#{ ENV['db_host'] ||= 'localhost' }"
 username = "#{ ENV['db_user'] ||= 'username' }"
 password = "#{ ENV['db_password'] ||= 'password' }"
 name     = "omeka_#{ stage }"
-prefix   = "#{ @instance.course.downcase }_"
+prefix   = "#{ @instance.course.slugify }_"
 ;port     = ""
       </pre>
     DBCONFIG

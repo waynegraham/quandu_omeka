@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'will_paginate'
 gem 'simple_form'
 gem 'thin'
+gem 'slugify'
 
 group :development do
   gem 'rack-livereload'
